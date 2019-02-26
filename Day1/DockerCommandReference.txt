@@ -1,0 +1,91 @@
+Listing all docker images
++++++++++++++++++++++++++
+docker images
+
+Listing all currently running docker containers
++++++++++++++++++++++++++++++++++++++++++++++++
+docker ps
+
+Listing all currently running docker container ids
+++++++++++++++++++++++++++++++++++++++++++++++++++
+docker ps -q
+
+List all containers including the exited containers
++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker ps -a
+
+Listing all container id including the existed containers
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker ps -aq
+
+Creating a new container in foreground/interactive mode
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker run -it ubuntu /bin/bash
+
+Creating a new container in background/detacted/daemon mode
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker run -dit ubuntu /bin/bash
+
+Retrieving IP address of a container
+++++++++++++++++++++++++++++++++++++
+docker inspect ubuntu1 | grep IPA
+docker inspect -f {{.NetworkSettings.IPAddress }} ubuntu1
+
+Alternatively, you can get inside the container and retrieve ipaddress
+docker exec -it ubuntu1 /bin/bash
+hostname -i
+
+Stopping a single docker container
+++++++++++++++++++++++++++++++++++
+docker stop ubuntu1
+
+Starting a stopped docker container
++++++++++++++++++++++++++++++++++++
+docker start ubuntu1
+
+Restarting a docker container
++++++++++++++++++++++++++++++
+docker restart ubuntu1
+
+Stopping multiple docker containers
++++++++++++++++++++++++++++++++++++
+docker stop $(docker ps -q)
+
+Stopping and removing multiple container graceously
++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker stop $(docker ps -q) && docker rm $(docker ps -aq)
+
+Removing all containers forcefully without stopping them
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker rm -f $(docker ps -aq)
+
+Building a docker image from Dockerfile
++++++++++++++++++++++++++++++++++++++++
+docker build -t tektutor/ansible-ubuntu .
+
+Finding more details about docker image
++++++++++++++++++++++++++++++++++++++++
+docker image inspect ubuntu
+
+Finding more details about docker container
++++++++++++++++++++++++++++++++++++++++++++
+docker inspect ubuntu1
+
+Listing all docker networks available
++++++++++++++++++++++++++++++++++++++
+docker network ls
+
+Creating a new docker network
++++++++++++++++++++++++++++++
+docker network create my-network-1
+
+Creating a new container and connecting the container to our network
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker run -dit --name ubuntu1 --hostname ubuntu1 --network=my-network-1 ubuntu bash
+
+You can also refer my blog at http://www.tektutor.org/blog
+also you can Subscribe and watch my YouTube Channel at 
+https://www.youtube.com/user/BulletJegan/videos
+
+
+
