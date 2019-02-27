@@ -6,7 +6,11 @@
     - cm_tool: Ansible
   tasks:
     - name: Install nginx web server
+      when: ( ansible_distribution == "Ubuntu" and ansible_os_family == "Debian" )
       apt: name=nginx state=latest update_cache=yes
+      register: output
+
+    - debug: var=output
 
     - name: Verify the nginx service status 
       shell: service nginx status
@@ -15,7 +19,6 @@
     - debug: var=output
 
     - name: Start the nginx service
-      #service: name=nginx state=started - due a bug we can't use service module as of today 
       shell: service nginx start
 
     - name: Configure nginx document root folder
