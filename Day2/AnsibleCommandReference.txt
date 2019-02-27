@@ -1,0 +1,21 @@
+You can check my blog here http://www.tektutor.org/blog
+
+You can also subscribe and watch my YouTube channel here
+https://www.youtube.com/user/BulletJegan/videos
+
+To run an Ansible adhoc command
++++++++++++++++++++++++++++++++
+ansible -i hosts all -m ping
+ansible -i hosts centos1 -m setup
+ansible -i hosts ubuntu1 -m shell -a "hostname -i"
+ansible -i hosts ubuntu1 -m shell -a "service nginx status"
+
+Executing an Ansible Playbook
++++++++++++++++++++++++++++++
+ansible-playbook -i hosts install-nginx.yml
+
+Executing a playbook with verbosity enabled
++++++++++++++++++++++++++++++++++++++++++++
+ansible-playbook -i hosts install-nginx.yml -vvvv
+
+
