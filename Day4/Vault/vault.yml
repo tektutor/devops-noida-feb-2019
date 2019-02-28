@@ -1,0 +1,8 @@
+- name: Demonstrates accessing vault protected file
+  hosts: localhost
+  vars_files:
+    - credentials.yml
+
+  tasks:
+    - name: Retrieve and print vault protected credentials
+      debug: msg="{{login_details['nginx'].username}} ==> {{login_details['nginx'].password}}"
