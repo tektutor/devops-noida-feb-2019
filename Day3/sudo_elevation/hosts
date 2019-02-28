@@ -1,0 +1,9 @@
+[all]
+test1 ansible_port=2010
+
+[all:vars]
+ansible_user=oracle
+ansible_host=localhost
+ansible_private_key_file=/root/.ssh/id_rsa
+ansible_become_user=root
+ansible_become_password=oracle

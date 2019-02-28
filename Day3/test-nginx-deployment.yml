@@ -1,0 +1,6 @@
+- name: Check the web page
+  shell: "curl http://localhost:{{item}}"
+  with_sequence: start=8001 end=8005
+  register: output
+
+- debug: var=output

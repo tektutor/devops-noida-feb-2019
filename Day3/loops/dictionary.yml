@@ -1,0 +1,26 @@
+- name: Demonstrates use of dictionary variables
+  hosts: localhost
+  vars_files:
+    - proxy_conf_file
+
+  vars:
+    software_tools:
+      - vim
+      - tree
+      - iputils-ping
+      - net-tools
+ 
+    env:
+      JAVA_HOME: /usr/lib/jdk
+      M2_HOME: /usr/share/maven
+
+  tasks:
+#    - name: Install software utilities
+#      apt: name="{{item}}" state=latest update_cache=yes
+#      environment: "{{http_proxy_conf}}"
+#      with_items: "{{software_tools}}"
+
+    - name: Print all the environment variables within dictionary 
+      debug: msg="{{item.key}} ==> {{item.value}}"
+      with_dict: "{{env}}"
+  

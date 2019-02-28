@@ -1,0 +1,30 @@
+- name: Another example for handlers
+  hosts: ubuntu 
+  tasks:
+    - name: Task 1
+      find: 
+         paths: /etc/nginx/sites-available  
+         patterns: "default"
+      register: output
+
+    - debug: var=output
+
+    - set_fact:
+         default_file_found: "{{ output.matched != 0 }}"
+
+    - debug: var=default_file_found
+      changed_when: default_file_found
+      notify:
+        - Default file found - Handler ******
+      register: output
+
+    - debug: var=output
+
+   # - command: /bin/true
+   #   notify:
+   #     - Default file found - Handler ******
+   #   ignore_errors: yes
+  
+  handlers:
+    - name: Default file found - Handler ******
+      debug: msg="Default configuration file is found." 

@@ -1,0 +1,21 @@
+- name: Demonstrates use of handlers and notifiers
+  hosts: ubuntu
+  tasks:
+    - name: Install nginx in Ubuntu
+      apt: name=nginx state=latest update_cache=yes
+      #notify:
+      #   - Restart nginx service
+
+    - name: Execute some command
+      shell: ls -l /root
+      notify:
+          - Call the other handler
+
+    - name: Restart nginx service
+      shell: service nginx restart
+
+  handlers:
+
+    - name: Call the other handler
+      debug: msg="The other handler was invoked..."
+    

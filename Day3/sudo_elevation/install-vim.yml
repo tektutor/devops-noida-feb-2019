@@ -1,0 +1,6 @@
+- name: Demonstrates sudo elevation
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install vim utility
+      apt: name=vim state=latest update_cache=yes

@@ -1,0 +1,8 @@
+- name: Verify the service status
+  shell: service nginx status
+  register: output
+  ignore_errors: yes
+
+- name: Start the nginx service
+  when: output.rc != 0
+  shell: service nginx start

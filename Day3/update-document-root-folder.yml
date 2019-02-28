@@ -1,0 +1,5 @@
+- name: Create the document root folder 
+  file: path=/var/html state=directory mode=0777
+
+- name: Restart the nginx service to apply the configuration changes
+  shell: service nginx restart
