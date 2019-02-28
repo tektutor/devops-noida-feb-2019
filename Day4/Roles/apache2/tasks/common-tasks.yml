@@ -1,0 +1,5 @@
+- name: Create Document Root Folder
+  file: path=/var/html state=directory mode=0777
+
+- name: Deploy web page
+  template: src=index.html.j2 dest=/var/html/index.html

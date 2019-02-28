@@ -1,0 +1,7 @@
+---
+# handlers file for apache2
+- name: Restart apache2 service
+  command: service apache2 restart
+
+- name: Restart httpd service
+  command: service httpd restart

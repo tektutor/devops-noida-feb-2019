@@ -1,0 +1,4 @@
+- name: Configure Document Root folder and grant permission for apache in CentOS
+  copy: src=httpd.conf dest=/etc/httpd/conf/httpd.conf
+  notify:
+    - Restart httpd service 

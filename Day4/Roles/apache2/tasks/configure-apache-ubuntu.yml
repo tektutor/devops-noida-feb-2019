@@ -1,0 +1,9 @@
+- name: Configure Document Root folder for apache in Ubuntu
+  copy: src=000-default.conf dest=/etc/apache2/sites-available/000.default.conf backup=yes
+  notify:
+     - Restart apache2 service
+
+- name: Grant permission to Document Root folder for apache in Ubuntu
+  copy: src=apache2.conf dest=/etc/apache2/apache2.conf backup=yes
+  notify:
+     - Restart apache2 service

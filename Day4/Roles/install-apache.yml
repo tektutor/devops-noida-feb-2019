@@ -1,0 +1,4 @@
+- name: This playbook will invoke apache2 role
+  hosts: all
+  roles:
+    - apache2
