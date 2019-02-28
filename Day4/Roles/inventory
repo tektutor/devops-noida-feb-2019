@@ -1,0 +1,1 @@
+server1 ansible_port=3001 ansible_user=root ansible_host=192.168.1.223 ansible_private_key_file=/root/.ssh/id_rsa
