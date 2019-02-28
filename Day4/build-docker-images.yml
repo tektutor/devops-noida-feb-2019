@@ -1,0 +1,26 @@
+- name: This playbook will automate docker image build 
+  hosts: localhost
+  tasks:
+
+    - name: Install Extra Packages for Enterprise Linuxi (EPEL) 
+      yum: name=epel-release state=latest
+
+    - name: Install Python Package Installer
+      yum: name=python-pip state=latest
+
+    - name: Install docker-py python package
+      shell: pip install docker-py
+
+    - name: Build ansible ubuntu docker image
+      docker_image:
+         name: "tektutor/ansible-ubuntu"
+         state: build
+         dockerfile: Ubuntudockerfile
+         path: .
+
+    - name: Build ansible centos docker image
+      docker_image:
+         name: "tektutor/ansible-centos"
+         state: build
+         dockerfile: CentOSdockerfile
+         path: .

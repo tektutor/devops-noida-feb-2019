@@ -1,0 +1,26 @@
+- name: Automates provisioning docker containers
+  hosts: localhost
+  tasks:
+    - name: Remove all existing containers
+      shell: docker rm -f $(docker ps -aq)
+      ignore_errors: yes
+
+    - name: Provision Ansible ubuntu containers
+      docker_container:
+          name: "ubuntu{{item}}"
+          image: "tektutor/ansible-ubuntu"
+          state: started
+          ports:
+             - "2{{item}}:22"
+             - "8{{item}}:80"
+      with_sequence: start=1 end=5 format=%03x
+
+    - name: Provision Ansible centos containers
+      docker_container:
+          name: "centos{{item}}"
+          image: "tektutor/ansible-centos"
+          state: started
+          ports:
+             - "3{{item}}:22"
+             - "9{{item}}:80"
+      with_sequence: start=1 end=5 format=%03x
