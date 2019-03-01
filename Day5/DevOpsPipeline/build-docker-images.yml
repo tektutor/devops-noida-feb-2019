@@ -10,6 +10,10 @@
 
     - name: Install docker-py python package
       shell: pip install docker-py
+     
+    - name: Remove existing custom ansible images
+      shell: docker rm -f $(docker ps -aq) && docker rmi tektutor/ansible-ubuntu
+      ignore_errors: yes
 
     - name: Build ansible ubuntu docker image
       docker_image:
